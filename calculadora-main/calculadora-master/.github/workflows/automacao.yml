@@ -1,0 +1,28 @@
+name: Automação da Calculadora
+
+on:
+  push:
+    branches: ["main", "master"]
+  pull_request:
+    branches: ["main", "master"]
+
+jobs:
+  verificar-projeto:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Baixar o código do projeto
+        uses: actions/checkout@v4
+
+      - name: Verificar arquivos principais
+        run: |
+          echo "Verificando estrutura do projeto..."
+          ls -la
+
+      - name: Executar testes matemáticos automatizados
+        run: |
+          echo "Executando os testes do projeto..."
+          node calculadora-master/tests/calculadora.test.js
+
+      - name: Finalizar automação
+        run: echo "Automação e testes executados com sucesso!"
